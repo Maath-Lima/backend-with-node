@@ -4,6 +4,11 @@
 2: Obter o endereco do usuario pelo Id
 */
 
+// importamos um módulo interno do node.js
+const util = require('util')
+
+const obterEnderecoAsync = util.promisify(obterEndereco);
+
 function obterUsuario() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -53,12 +58,25 @@ usuarioPromise
       });
   })
   .then((resultado) => {
-    console.log(resultado);
+    return obterEnderecoAsync(resultado.usuario.id)
+      .then((result) => {
+        return {
+          usuario: resultado.usuario,
+          telefone: resultado.telefone,
+          endereco: result
+        }
+      })
+  })
+  .then((resultado) => {
+    console.log(`
+      Nome: ${resultado.usuario.nome}
+      Endereco: ${resultado.endereco.rua}, ${resultado.endereco.numero}
+      Telefone: (${resultado.telefone.ddd}) ${resultado.telefone.numero}
+    `);
   })
   .catch((error) => {
     console.error('Deu ruim', error);
   })
-
 
 // function resolverUsuario(erro, usuario) {
 //   console.log('usuario', usuario);
