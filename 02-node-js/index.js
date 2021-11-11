@@ -43,6 +43,7 @@ function obterEndereco(idUsuario, callback) {
 
 // 1º passo adicionar a palavra async -> automaticante ela retornará uma Promisse
 main();
+
 async function main() {
   try {
     const usuario = await obterUsuario();
