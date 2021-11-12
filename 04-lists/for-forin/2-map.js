@@ -31,7 +31,7 @@ async function main() {
 
     console.log(names);
   } catch (error) {
-    console.error('DEU RUIM', error)
+    console.error('DEU RUIM', error);
   }
 }
 
