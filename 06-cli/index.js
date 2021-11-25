@@ -63,7 +63,7 @@ async function main() {
         return;
       }
 
-      console.log('Herói atualizado com sucesso');
+      console.log('Herói atualizado com sucesso!');
     }
   } catch (error) {
     console.error('DEU RUIM', error);
